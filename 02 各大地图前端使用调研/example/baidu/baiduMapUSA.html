@@ -1,0 +1,36 @@
+<!DOCTYPE html>  
+<html>
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=42WFQp7IhguX3huulLaGanobA36B2KeC">
+//v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+</script>
+</head>  
+ 
+<body>  
+<div id="container"></div> 
+<script type="text/javascript"> 
+	var map = new BMap.Map("container");
+	// 创建地图实例  注意百度地图的经纬度顺序  洛杉矶经纬度latitude: 34.05347333311708  longitude: -118.24553737549783
+	var point = new BMap.Point(-118.24553737549783,34.05347333311708);
+	// 创建点坐标  
+	map.centerAndZoom(point, 15);
+	// 初始化地图，设置中心点坐标和地图级别  
+	map.enableScrollWheelZoom(true);  // 开启鼠标滚轮
+
+
+	var opts = {anchor: BMAP_ANCHOR_BOTTOM_RIGHT}  // 控件位置
+	map.addControl(new BMap.NavigationControl(opts));  // 添加基础控件
+	
+	var marker = new BMap.Marker(point);        // 创建标注    
+	map.addOverlay(marker);         
+</script>  
+</body>  
+</html>

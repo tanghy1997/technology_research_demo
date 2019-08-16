@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>setmapviewoptionsHTML</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <style type='text/css'>body{margin:0;padding:0;overflow:hidden;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+    </head>
+    <body>
+        <div id='printoutPanel'></div>
+        
+        <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+        <script type='text/javascript'>
+            //  必应地图定位在国外测试demo
+            function loadMapScenario() {
+                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+                map.setOptions({
+                    maxZoom: 18,
+                    minZoom: 5
+                });
+                // 注意这里的坐标是必应地图下的坐标
+                var point = new Microsoft.Maps.Location(35.709872,139.752964);  // 地点日本东京-春日
+                var locs = [point];
+                var rect = Microsoft.Maps.LocationRect.fromLocations(locs);
+                
+                // 设置地图的中心点
+                map.setView({ 
+                    bounds: rect,
+                    // padding: 80,
+                    center: new Microsoft.Maps.Location(35.709872,139.752964),// 地点日本东京-春日
+                });
+                
+                //  给中心点加上图钉
+                // var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), { icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+                //     anchor: new Microsoft.Maps.Point(12, 39) });
+                var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), { color: 'red' });
+                    console.log(map.getCenter())
+                map.entities.push(pushpin);
+                
+            }
+        </script>
+        <script type='text/javascript' src='https://cn.bing.com/api/maps/mapcontrol?key=ApwZQEXO28_6oTFMMWci8U3ix16pHfwR6Dw98ckS1MYdOtrXCnQEf2iSHYjuTSxs&callback=loadMapScenario' async defer></script>
+    </body>
+</html>
