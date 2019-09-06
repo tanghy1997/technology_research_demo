@@ -4,7 +4,7 @@
  * @Company: iflytek
  * @Author: hytang2
  * @Date: 2019-09-06 14:01:17
- * @LastEditTime: 2019-09-06 16:34:21
+ * @LastEditTime: 2019-09-06 17:23:18
  -->
  // TODO: 这里不推荐使用背景图片会不清晰
 <template>
@@ -56,6 +56,9 @@ export default {
         }
         const canvas = await html2canvas(this.$refs.capture, opts);
         this.$refs.addImage.append(canvas);  
+        let dataURL = canvas.toDataURL("image/png");
+        dataURL = dataURL.split(",")[1];
+        console.log(dataURL)
     }
   },
 
